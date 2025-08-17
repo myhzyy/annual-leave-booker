@@ -1,6 +1,6 @@
-import Header from "./components/Header";
-import MainBody from "./components/MainBody";
-import BottomToolbar from "./components/BottomToolBar";
+import Header from "./features/Header";
+import MainBody from "./features/MainBody";
+import BottomToolbar from "./features/BottomToolBar";
 
 export default function Home() {
   return (
