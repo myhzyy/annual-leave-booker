@@ -1,0 +1,9 @@
+.toolbar-wrapper {
+  border-top: 1px solid #e6e6eb;
+  background: #fff;
+  padding: 10px 12px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: calc(10px + env(safe-area-inset-bottom));
+}

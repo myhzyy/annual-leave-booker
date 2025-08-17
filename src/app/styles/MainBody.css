@@ -1,0 +1,18 @@
+.main-wrapper {
+  border: 1px solid blueviolet;
+  overflow: auto;
+  padding: 12px 16px;
+  background: #f6f7f9;
+}
+
+.overview-box {
+  border: 2px solid red;
+}
+
+.entitlement-boxes {
+  border: 2px solid red;
+}
+
+.request-botton {
+  border: 2px solid red;
+}
