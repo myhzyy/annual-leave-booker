@@ -17,4 +17,4 @@
 
 ## 🧩 BodyOverView
 
-- style BodyOverView to match figma file
+- sort entitlement boxes

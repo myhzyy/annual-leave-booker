@@ -1,0 +1,42 @@
+.main-wrapper {
+  /* border: 1px solid red; */
+}
+.overview-box {
+  /* border: 1px solid red; */
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px;
+}
+
+.entitlement-boxes {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: space-around;
+}
+
+.entitlement-box {
+  font-weight: 700;
+  height: 140px;
+  width: 140px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.entitlement-box span {
+  display: flex;
+  font-size: 36px;
+}
+
+.entitlement-box p {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.entitlement-box h2 {
+  text-align: center;
+}
