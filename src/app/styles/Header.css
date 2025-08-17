@@ -1,6 +1,8 @@
 .header-wrapper {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   padding: 12px 16px;
+  background-color: #2d2f3e;
+  color: white;
 }
 
 .header-layout {

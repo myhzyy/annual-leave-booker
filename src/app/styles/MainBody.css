@@ -1,5 +1,5 @@
 .mainBody-wrapper {
-  border: 1px solid blueviolet;
+  /* border: 1px solid blueviolet; */
   overflow: auto;
   padding: 12px 15px;
   background: hsl(220, 20%, 97%);

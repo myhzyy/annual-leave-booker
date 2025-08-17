@@ -17,4 +17,5 @@
 
 ## 🧩 BodyOverView
 
-- sort entitlement boxes
+- sort entitlement boxes ✅
+- sort white scheme

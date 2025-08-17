@@ -59,10 +59,10 @@ body {
 }
 
 .app {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   height: 100dvh;
   margin: 0 auto;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  background: #fff;
+  background: hsl(220, 20%, 97%);
 }

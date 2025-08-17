@@ -1,4 +1,5 @@
 import "../styles/BodyOverView.css";
+import { MdOutlineAccessAlarm } from "react-icons/md";
 
 export default function BodyOverView() {
   return (
@@ -8,12 +9,19 @@ export default function BodyOverView() {
       </div>
       <div className="entitlement-boxes">
         <div className="entitlement-box">
-          <h2>Entitlement</h2>
+          <div className="entitlement-header">
+            <h2>Entitlement</h2>
+            <MdOutlineAccessAlarm className="icon" />
+          </div>
           <span>20</span>
           <p>Days remaining</p>
         </div>
         <div className="entitlement-box">
-          <h2>Next holiday</h2>
+          <div className="entitlement-header">
+            <h2>Next holiday</h2>
+            <MdOutlineAccessAlarm className="icon" />
+          </div>
+
           <span>14th</span>
           <p>March</p>
         </div>
