@@ -1,7 +1,8 @@
 .annual-leave-body {
   display: grid;
-  gap: 10px;
+  gap: 12px;
   padding: 10px;
+  overflow-x: hidden;
 }
 
 /* Header */
@@ -26,11 +27,24 @@
   cursor: pointer;
 }
 
-/* Grid instead of horizontal scroll */
+/* Only this container scrolls vertically */
+.leave-viewport {
+  max-height: 320px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding-right: 6px;
+  border: 1px solid #ececf1;
+  border-radius: 12px;
+  background: #fff;
+}
+
+/* Grid of cards inside the scrolling box */
 .leave-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 per row */
-  gap: 14px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 10px;
 }
 
 /* Card */
@@ -82,7 +96,6 @@
   color: #6b7280;
 }
 
-/* On smaller screens -> 1 per row */
 @media (max-width: 600px) {
   .leave-grid {
     grid-template-columns: 1fr;

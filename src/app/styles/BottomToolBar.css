@@ -1,9 +1,20 @@
 .toolbar-wrapper {
-  border-top: 1px solid #e6e6eb;
+  /* border: 1px solid red; */
+  border-top: 3px solid #e6e6eb;
   background: #fff;
   padding: 10px 12px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  padding-bottom: calc(10px + env(safe-area-inset-bottom));
+  /* padding-bottom: calc(10px + env(safe-area-inset-bottom)); */
+}
+
+.icon-wrapper {
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-size: 14px;
+  /* border: 2px solid red; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
