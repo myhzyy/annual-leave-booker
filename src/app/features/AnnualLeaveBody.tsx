@@ -1,3 +1,3 @@
 export default function AnnualLeaveBody() {
-  return <p>hi</p>;
+  return <p>annual leave body</p>;
 }

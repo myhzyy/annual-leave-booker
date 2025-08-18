@@ -17,5 +17,6 @@
 
 - sort entitlement boxes ✅
 - sort white scheme ✅
-- add request button
-- finish body overview component
+- add request button ✅
+- finish body overview component ✅
+- increase top banner ✅
