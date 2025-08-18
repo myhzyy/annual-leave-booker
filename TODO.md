@@ -20,4 +20,5 @@
 - add request button ✅
 - finish body overview component ✅
 - increase top banner ✅
-- upcoming leave box
+- upcoming leave box ✅
+- sliding leave block
