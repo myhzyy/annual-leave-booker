@@ -1,0 +1,44 @@
+.annual-leave-body-container {
+  border: 1px solid red;
+  display: grid;
+  grid-template-rows: 10% 90%;
+  height: 100vh;
+  gap: 10px;
+  padding: 10px;
+}
+
+.upcoming-leave {
+  display: flex;
+}
+.upcoming-leave-and-btn-wrapper {
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-size: 14px;
+  /* border: 1px solid red; */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  letter-spacing: 0.2px;
+}
+
+.upcoming-leave button {
+  /* border: 1px solid red; */
+  padding: 2px 5px;
+  border: none;
+}
+
+.leave-blocks {
+  border: 1px solid red;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+}
+
+.leave-block {
+  border: 1px solid red;
+  height: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
