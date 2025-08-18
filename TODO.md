@@ -8,8 +8,6 @@
 - Move header, mainbody and bottom toolbar into `features` folder ✅
 - Style layout with grid/flex ⬜ ✅
 
----
-
 ## 🧩 Main Body Component
 
 - put overview body and annual leave body in their own componets ✅
@@ -18,4 +16,6 @@
 ## 🧩 BodyOverView
 
 - sort entitlement boxes ✅
-- sort white scheme
+- sort white scheme ✅
+- add request button
+- finish body overview component
