@@ -1,3 +1,6 @@
 .calendar-body {
-  /* background-color: #32284a; */
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
 }

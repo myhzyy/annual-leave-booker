@@ -1,153 +1,109 @@
-/* Fill the entire viewport */
-.cal-screen {
-  min-height: 100vh;
-  background: #f5f6fa; /* light background like the mock */
-  display: grid;
-  grid-template-rows: auto 1fr; /* header + calendar (footer optional) */
-  padding: 14px;
-  box-sizing: border-box;
-}
-
-/* Rounded white panel that holds everything (optional)
-.cal-screen { background: #eceff5; }
-*/
-
-.cal-header {
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 14px 12px;
-  display: grid;
-  grid-template-columns: 42px 1fr 42px;
-  align-items: center;
-  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.06);
-  margin-bottom: 12px;
-}
-
-.hdr-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: none;
-  background: #eef2f7;
-  color: #1f2937;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-.hdr-center {
-  text-align: center;
-  line-height: 1.1;
-}
-.hdr-sub {
-  font: 600 14px/1 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  color: #7a8291;
-}
-.hdr-title {
-  margin-top: 2px;
-  font: 800 28px/1.1 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  color: #1f2937;
-}
-
-/* Calendar area fills remaining height */
-.cal-main {
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 8px 6px 16px;
-  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.06);
-  overflow: hidden; /* keep DayPicker inside rounded box */
-  display: grid;
-}
-
-/* ---- DayPicker overrides to make it full height & styled ---- */
-.rdp {
-  --rdp-accent-color: #2563eb; /* blue selection */
-  --rdp-background-color: rgba(37, 99, 235, 0.15);
-  color: #1f2937;
+/* If you’re on the app router, #__next isn’t used, but keeping it is harmless */
+html,
+body {
   height: 100%;
-}
-
-.rdp-months {
-  height: 100%;
-  display: grid;
-}
-.rdp-month {
   margin: 0;
 }
-.rdp-caption {
-  display: none;
-} /* we use our custom header */
 
-.rdp-head_cell {
-  font: 700 12px/1 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  text-transform: uppercase;
-  color: #94a3b8;
-  padding: 10px 0 6px;
-}
-
-.rdp-table {
-  width: 100%;
-}
-.rdp-cell {
-  padding: 6px 0;
+/* Root for this page */
+.calendar-page {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  /* .calendar-page itself will be inside .page-content which gives the height */
+  flex: 1;
+  min-height: 0;
 }
 
-/* Base day look */
-.rdp-day {
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-weight: 700;
-  color: #1f2937;
-}
-.rdp-day:hover {
-  background: rgba(37, 99, 235, 0.07);
-}
-
-/* Outside days dimmed */
-.rdp-day_outside {
-  color: #c6cbd4;
-}
-
-/* Today outline */
-.rdp-day_today {
-  outline: 2px solid rgba(31, 41, 55, 0.2);
-  outline-offset: -2px;
-}
-
-/* Range styling (start/middle/end) */
-.rdp-day_selected,
-.rdp-day_range_start,
-.rdp-day_range_end,
-.rdp-day_range_middle {
+/* Hero bar */
+.calendar-hero {
+  padding: 16px;
+  background: #2e3550;
   color: #fff;
 }
 
-.rdp-day_range_middle {
-  background: var(--rdp-background-color);
-  color: #1f2937;
-  border-radius: 999px;
+/* Card the calendar lives in */
+.calendar-card {
+  flex: 1; /* fill remaining height */
+  min-height: 0; /* let child flex */
+  display: flex;
+  flex-direction: column;
+  padding: 8px 8px 16px;
+  margin: 0;
+  border-radius: 0;
+  background: #fff;
+  box-shadow: none;
 }
 
-.rdp-day_range_start,
-.rdp-day_range_end {
-  background: var(--rdp-accent-color);
-  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+.calendar-toprow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 6px 8px;
 }
 
-/* Optional footer area
-.cal-footer {
-  margin-top: 12px;
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 12px;
-  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.06);
+.month-nav {
+  display: flex;
+  gap: 8px;
 }
-*/
+.month-nav button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 0;
+  cursor: pointer;
+  background: #ff5c23;
+  color: #fff;
+  font-size: 20px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 6px 16px rgba(255, 92, 35, 0.35);
+}
 
-/* Make day size a tad smaller on very small screens */
-@media (max-width: 360px) {
-  .rdp-day {
-    width: 36px;
-    height: 36px;
+/* The ONLY scroller */
+.calendar-month-shell {
+  /* border: 2px solid red;  */
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding-bottom: calc(16px + env(safe-area-inset-bottom));
+}
+
+/* DayPicker sizing */
+.rdp-full {
+  border: 2px solid red;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  --rdp-cell-size: 50px;
+  --rdp-accent-background: #1876cf;
+}
+.rdp {
+  margin: 0 !important;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.rdp-months {
+  flex: 1; /* stretch the grid */
+  display: flex;
+  align-items: center; /* optional */
+  justify-content: center; /* optional */
+}
+.rdp-day {
+  border-radius: 50%;
+}
+.rdp-day_selected {
+  background: #ff5c23;
+  color: #fff;
+}
+
+@media (min-width: 768px) {
+  .rdp-full {
+    --rdp-cell-size: 56px;
   }
 }

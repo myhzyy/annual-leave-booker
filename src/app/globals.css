@@ -10,6 +10,7 @@
   font: inherit;
 }
 
+:root,
 html,
 body {
   height: 100%;
@@ -59,7 +60,6 @@ body {
 }
 
 .app {
-  /* border: 1px solid red; */
   height: 100dvh;
   margin: 0 auto;
   display: grid;
