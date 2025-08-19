@@ -1,33 +1,46 @@
+"use client";
 import "../styles/BottomToolBar.css";
 
 import HomeIcon from "@mui/icons-material/Home";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SettingsIcon from "@mui/icons-material/Settings";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
+import AddIcon from "@mui/icons-material/Add";
 
 export default function BottomNav() {
   return (
-    <nav className="toolbar-wrapper">
-      <div className="icon-wrapper">
-        Home <HomeIcon />
-      </div>
+    <footer
+      className="btm-shell"
+      role="navigation"
+      aria-label="Bottom navigation"
+    >
+      <button className="fab" aria-label="Request">
+        <AddIcon fontSize="inherit" />
+      </button>
 
-      <div className="icon-wrapper">
-        Calendar <CalendarMonthIcon />
-      </div>
+      <nav className="dock">
+        <button className="nav-item" aria-current="page">
+          <HomeIcon className="nav-icon" />
+          <span className="nav-label">Home</span>
+        </button>
 
-      <div className="icon-wrapper">
-        Circle <AddCircleIcon />
-      </div>
+        <button className="nav-item">
+          <CalendarMonthIcon className="nav-icon" />
+          <span className="nav-label">Calendar</span>
+        </button>
 
-      <div className="icon-wrapper">
-        Notifications <NotificationsIcon />
-      </div>
+        <span className="dock-spacer" aria-hidden />
 
-      <div className="icon-wrapper">
-        Settings <SettingsIcon />
-      </div>
-    </nav>
+        <button className="nav-item">
+          <NotificationsIcon className="nav-icon" />
+          <span className="nav-label">Notifications</span>
+        </button>
+
+        <button className="nav-item">
+          <SettingsIcon className="nav-icon" />
+          <span className="nav-label">Settings</span>
+        </button>
+      </nav>
+    </footer>
   );
 }

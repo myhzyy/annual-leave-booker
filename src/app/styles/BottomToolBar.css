@@ -1,20 +1,98 @@
-.toolbar-wrapper {
-  /* border: 1px solid red; */
-  border-top: 3px solid #e6e6eb;
-  background: #fff;
-  padding: 10px 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  /* padding-bottom: calc(10px + env(safe-area-inset-bottom)); */
+.btm-shell {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+  background: transparent;
 }
 
-.icon-wrapper {
-  font-size: 1.1rem;
-  font-weight: 700;
-  font-size: 14px;
-  /* border: 2px solid red; */
-  display: flex;
-  flex-direction: column;
+.dock {
+  position: relative;
+  background: #ffffff;
+  border: 4px solid #ececf1;
+  border-radius: 20px;
+  box-shadow: 0 10px 24px rgba(17, 24, 39, 0.1);
+  height: 64px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 84px 1fr 1fr;
   align-items: center;
+  padding: 0 10px;
+}
+
+.dock-spacer {
+  width: 84px;
+  height: 1px;
+}
+
+.nav-item {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 6px 4px 8px;
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  min-width: 64px;
+  cursor: pointer;
+}
+
+.nav-icon {
+  font-size: 22px;
+  color: #1f2937;
+}
+
+.nav-label {
+  font: 600 12px/1.1 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: #1f2937;
+}
+
+.nav-item[aria-current="page"] .nav-label {
+  color: #1876cf;
+}
+
+.fab {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -34%);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 0;
+  background: #1876cf;
+  color: #fff;
+  font-size: 34px;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 10px 20px rgba(24, 118, 207, 0.35),
+    0 2px 6px rgba(0, 0, 0, 0.08);
+  z-index: 2;
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .nav-item:hover .nav-label {
+    color: #1876cf;
+  }
+  .fab:hover {
+    transform: translate(-50%, -38%);
+  }
+}
+
+@media (max-width: 360px) {
+  .nav-item {
+    min-width: 56px;
+  }
+  .dock {
+    grid-template-columns: 1fr 1fr 72px 1fr 1fr;
+  }
+  .dock-spacer {
+    width: 72px;
+  }
+  .fab {
+    width: 56px;
+    height: 56px;
+    font-size: 30px;
+  }
 }
