@@ -1,0 +1,75 @@
+:root {
+  --header-bg: #0d0d0d;
+  --text-light: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.7);
+  --accent-red: #e63946;
+}
+
+.header-black {
+  background: var(--header-bg);
+  color: var(--text-light);
+  padding: 10px 24px;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 14px;
+}
+
+.header-top h2 {
+  /* border: 2px solid red; */
+  font-size: 1.6rem;
+  font-weight: 300;
+}
+
+.header-day {
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1;
+  position: relative;
+}
+
+.header-day::after {
+  color: var(--accent-red);
+  font-size: 1.5rem;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.header-date {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+.date-dot {
+  color: var(--accent-red);
+}
+
+.header-greeting {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.header-greeting p {
+  margin: 4px 0;
+}
+
+.header-greeting .highlight {
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+.header-greeting strong {
+  font-weight: 600;
+}
+
+.muted {
+  color: var(--text-muted);
+}

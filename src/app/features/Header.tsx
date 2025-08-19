@@ -17,9 +17,6 @@ export default function Header() {
             <span className="header-date">{formattedDate}</span>
             <h1 className="header-welcome">Welcome back!</h1>
           </div>
-
-          {/* avatar (optional) */}
-          {/* <div className="header-avatar" aria-hidden /> */}
         </div>
       </div>
     </header>
