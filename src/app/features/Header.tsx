@@ -2,21 +2,26 @@ import "../styles/Header.css";
 
 export default function Header() {
   const today = new Date();
-  const options: Intl.DateTimeFormatOptions = {
+  const formattedDate = today.toLocaleDateString("en-GB", {
+    weekday: "long",
     day: "numeric",
     month: "long",
     year: "numeric",
-  };
-  const formattedDate = today.toLocaleDateString("en-GB", options);
+  });
 
   return (
-    <div className="header-wrapper">
-      <div className="header-layout">
-        <div className="date-and-welcome">
-          <p>{formattedDate}</p>
-          <h1>Welcome back!</h1>
+    <header className="header-wrapper">
+      <div className="header-card">
+        <div className="header-top">
+          <div className="date-and-welcome">
+            <span className="header-date">{formattedDate}</span>
+            <h1 className="header-welcome">Welcome back!</h1>
+          </div>
+
+          {/* avatar (optional) */}
+          {/* <div className="header-avatar" aria-hidden /> */}
         </div>
       </div>
-    </div>
+    </header>
   );
 }

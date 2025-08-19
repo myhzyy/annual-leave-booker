@@ -65,4 +65,5 @@ body {
   display: grid;
   grid-template-rows: auto 1fr auto;
   background: hsl(220, 20%, 97%);
+  /* background-color: 2E3A74; */
 }
