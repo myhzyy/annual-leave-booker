@@ -7,7 +7,6 @@ export default function CalendarPage() {
   return (
     <div className="app">
       <Header />
-
       <CalendarBody />
       <BottomToolbar />
     </div>

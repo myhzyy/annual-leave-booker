@@ -18,6 +18,8 @@
     "@mui/material": "^7.3.1",
     "dayjs": "^1.11.13",
     "next": "15.4.6",
+    "primeicons": "^7.0.0",
+    "primereact": "^10.9.7",
     "react": "19.1.0",
     "react-day-picker": "^9.9.0",
     "react-dom": "19.1.0",
