@@ -1,4 +1,6 @@
-import type { Metadata } from "next";
+"use client";
+
+import { MantineProvider } from "@mantine/core";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -7,11 +9,6 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-export const metadata: Metadata = {
-  title: "Annual Leave Booker",
-  description: "Book and track your annual leave",
-};
-
 export default function RootLayout({
   children,
 }: {
@@ -19,7 +16,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.variable}>{children}</body>
+      <body className={inter.variable}>
+        <MantineProvider
+          defaultColorScheme="light"
+          theme={{
+            fontFamily: "var(--font-inter), sans-serif",
+          }}
+        >
+          {children}
+        </MantineProvider>
+      </body>
     </html>
   );
 }

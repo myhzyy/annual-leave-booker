@@ -1,0 +1,104 @@
+/* Full-screen dark purple background */
+.calendar-screen {
+  height: 100vh;
+  width: 100%;
+  background: #1d1733;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 10px;
+  box-sizing: border-box;
+}
+
+/* Header */
+.calendar-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.calendar-title {
+  font: 700 20px/1.2 system-ui, sans-serif;
+}
+
+/* Arrow buttons */
+.calendar-arrows {
+  display: flex;
+  gap: 10px;
+}
+.calendar-arrows button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: #ff6a00;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(255, 106, 0, 0.35);
+}
+.calendar-arrows button:active {
+  transform: translateY(1px);
+}
+
+/* DayPicker overrides */
+.rdp {
+  --rdp-accent-color: #ff6a00;
+  color: #fff;
+}
+
+.rdp-caption {
+  display: none;
+}
+
+.rdp-head_cell {
+  font: 600 12px/1 system-ui, sans-serif;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.rdp-day {
+  border-radius: 10px;
+  font-weight: 600;
+  color: #e7e7ea;
+}
+.rdp-day:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.rdp-day_outside {
+  color: rgba(231, 231, 234, 0.35);
+}
+
+.rdp-day_today {
+  outline: 2px solid rgba(255, 255, 255, 0.3);
+  outline-offset: -2px;
+}
+
+.rdp-day_selected,
+.rdp-day_range_start,
+.rdp-day_range_end,
+.rdp-day_range_middle {
+  color: #fff;
+}
+
+.rdp-day_range_middle {
+  background: rgba(255, 106, 0, 0.5);
+  border-radius: 10px;
+}
+
+.rdp-day_range_start,
+.rdp-day_range_end {
+  background: #ff6a00;
+  border-radius: 12px;
+}
+
+/* Helper text */
+.calendar-helper {
+  margin-top: auto;
+  font: 500 12px/1.2 system-ui, sans-serif;
+  color: #bbb;
+}

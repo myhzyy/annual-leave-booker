@@ -1,5 +1,6 @@
 "use client";
 import "../styles/BottomToolBar.css";
+import Link from "next/link";
 
 import HomeIcon from "@mui/icons-material/Home";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
@@ -24,10 +25,12 @@ export default function BottomNav() {
           <span className="nav-label">Home</span>
         </button>
 
-        <button className="nav-item">
-          <CalendarMonthIcon className="nav-icon" />
-          <span className="nav-label">Calendar</span>
-        </button>
+        <Link href="/calendar">
+          <button className="nav-item">
+            <CalendarMonthIcon className="nav-icon" />
+            <span className="nav-label">Calendar</span>
+          </button>
+        </Link>
 
         <span className="dock-spacer" aria-hidden />
 
