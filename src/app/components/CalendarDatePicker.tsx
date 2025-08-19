@@ -9,55 +9,52 @@ export default function CalendarDatePicker() {
   const [month, setMonth] = useState(new Date());
   const [range, setRange] = useState<DateRange | undefined>();
 
-  const goPrev = () => {
+  const go = (delta: number) => {
     const d = new Date(month);
-    d.setMonth(d.getMonth() - 1);
-    setMonth(d);
-  };
-
-  const goNext = () => {
-    const d = new Date(month);
-    d.setMonth(d.getMonth() + 1);
+    d.setMonth(d.getMonth() + delta);
     setMonth(d);
   };
 
   return (
-    <div className="calendar-screen">
-      <header className="calendar-header">
-        <h2 className="calendar-title">
-          {month.toLocaleDateString("en-GB", {
-            month: "short",
-            year: "numeric",
-          })}
-        </h2>
-        <div className="calendar-arrows">
-          <button onClick={goPrev} aria-label="Previous month">
-            ‹
-          </button>
-          <button onClick={goNext} aria-label="Next month">
-            ›
-          </button>
+    <section className="cal-screen">
+      <header className="cal-header">
+        <button
+          className="hdr-btn"
+          aria-label="Previous"
+          onClick={() => go(-1)}
+        >
+          ‹
+        </button>
+
+        <div className="hdr-center">
+          <div className="hdr-sub">Calendar</div>
+          <h1 className="hdr-title">
+            {month.toLocaleDateString("en-GB", { month: "long" })}
+          </h1>
         </div>
+
+        <button className="hdr-btn" aria-label="Next" onClick={() => go(+1)}>
+          ›
+        </button>
       </header>
 
-      <DayPicker
-        mode="range"
-        selected={range}
-        onSelect={setRange}
-        month={month}
-        onMonthChange={setMonth}
-        fixedWeeks
-        showOutsideDays
-        weekStartsOn={0} // Sunday
-        disableNavigation
-      />
+      <div className="cal-main">
+        <DayPicker
+          mode="range"
+          selected={range}
+          onSelect={setRange}
+          month={month}
+          onMonthChange={setMonth}
+          showOutsideDays
+          fixedWeeks
+          weekStartsOn={0}
+          disableNavigation /* we use our own chevrons */
+        />
+      </div>
 
-      {range?.from && range?.to && (
-        <p className="calendar-helper">
-          {range.from.toLocaleDateString("en-GB")} –{" "}
-          {range.to.toLocaleDateString("en-GB")}
-        </p>
-      )}
-    </div>
+      {/* Optional footer area for upcoming list etc.
+      <footer className="cal-footer">Upcoming …</footer>
+      */}
+    </section>
   );
 }
