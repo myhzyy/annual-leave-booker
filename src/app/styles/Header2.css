@@ -16,7 +16,6 @@
   --shadow: 0 12px 28px rgba(15, 23, 42, 0.1);
 }
 
-/* container with soft wavy backdrop */
 .med-header {
   padding: 14px 16px 10px;
   background: radial-gradient(
@@ -33,7 +32,6 @@
     sans-serif;
 }
 
-/* top bar */
 .med-topbar {
   display: flex;
   align-items: center;
@@ -119,8 +117,8 @@
 }
 
 .hello {
-  color: var(--muted);
   font-size: 0.95rem;
+  font-weight: 700;
   margin-bottom: 4px;
 }
 .title {

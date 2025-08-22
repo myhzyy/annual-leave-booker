@@ -1,22 +1,24 @@
-import "../styles/Header.css";
+"use client";
+import "../styles/Header2.css";
 
-export default function Header() {
+export default function Header2() {
   const today = new Date();
-  const formattedDate = today.toLocaleDateString("en-GB", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+  const day = today.getDate();
+  const weekday = today.toLocaleDateString("en-GB", { weekday: "long" });
+  const month = today.toLocaleDateString("en-GB", { month: "long" });
 
   return (
-    <header className="header-wrapper">
-      <div className="header-card">
-        <div className="header-top">
-          <div className="date-and-welcome">
-            <span className="header-date">{formattedDate}</span>
-            <h1 className="header-welcome">Welcome back!</h1>
-          </div>
+    <header className="med-header">
+      <div className="med-card">
+        <p className="hello">
+          Hello, <strong>Jacob</strong> 👋
+        </p>
+
+        <div className="meta-row">
+          <span className="pill success">Home</span>
+          <span className="meta">
+            {weekday}, {month} {day}
+          </span>
         </div>
       </div>
     </header>
