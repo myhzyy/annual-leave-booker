@@ -1,75 +1,162 @@
 :root {
-  --header-bg: #0d0d0d;
-  --text-light: #ffffff;
-  --text-muted: rgba(255, 255, 255, 0.7);
-  --accent-red: #e63946;
+  /* airy medical palette */
+  --bg: #f4f7fb;
+  --card: #ffffff;
+  --ink: #0f172a;
+  --muted: #657083;
+  --ring: rgba(15, 23, 42, 0.08);
+
+  --mint-50: #eefbf4;
+  --mint-300: #8ee4bd;
+  --mint-500: #4cc89b;
+
+  --blue-50: #eef6ff;
+  --blue-300: #95c3ff;
+
+  --shadow: 0 12px 28px rgba(15, 23, 42, 0.1);
 }
 
-.header-black {
-  background: var(--header-bg);
-  color: var(--text-light);
-  padding: 10px 24px;
-  border-bottom-left-radius: 18px;
-  border-bottom-right-radius: 18px;
+/* container with soft wavy backdrop */
+.med-header {
+  padding: 14px 16px 10px;
+  background: radial-gradient(
+      120% 80% at 0% 0%,
+      var(--blue-50) 0%,
+      transparent 60%
+    ),
+    radial-gradient(90% 70% at 100% 0%, var(--mint-50) 0%, transparent 60%),
+    var(--bg);
+  border-bottom-left-radius: 28px;
+  border-bottom-right-radius: 28px;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+  font-family: system-ui, -apple-system, "Inter", "SF Pro Display", Roboto,
+    sans-serif;
 }
 
-.header-top {
+/* top bar */
+.med-topbar {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 }
 
-.header-top h2 {
-  /* border: 2px solid red; */
-  font-size: 1.6rem;
-  font-weight: 300;
-}
-
-.header-day {
-  font-size: 2.8rem;
-  font-weight: 700;
-  line-height: 1;
+/* avatar */
+.avatar-wrap {
   position: relative;
+  display: inline-grid;
+  place-items: center;
+}
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 3px 8px rgba(15, 23, 42, 0.18);
+  border: 2px solid #fff;
+}
+.status-dot {
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, var(--mint-300), var(--mint-500));
+  border: 2px solid #fff;
 }
 
-.header-day::after {
-  color: var(--accent-red);
-  font-size: 1.5rem;
-  margin-left: 6px;
-  vertical-align: middle;
+/* bell */
+.notif {
+  position: relative;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  padding: 2px;
+  cursor: pointer;
+}
+.bell {
+  width: 24px;
+  height: 24px;
+  filter: drop-shadow(0 2px 4px rgba(15, 23, 42, 0.15));
+}
+.notif-dot {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #7c5cff;
+  border: 2px solid #fff;
 }
 
-.header-date {
+/* card */
+.med-card {
+  background: var(--card);
+  border: 1px solid var(--ring);
+  border-radius: 20px;
+  padding: 14px 16px 16px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle inset decoration */
+.med-card::after {
+  content: "";
+  position: absolute;
+  right: -30px;
+  top: -30px;
+  width: 120px;
+  height: 120px;
+  border-radius: 24px;
+  background: radial-gradient(
+    closest-side,
+    rgba(149, 195, 255, 0.28),
+    rgba(149, 195, 255, 0) 70%
+  );
+}
+
+.hello {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+.title {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--ink);
+  letter-spacing: 0.2px;
+}
+
+/* meta row */
+.meta-row {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--text-muted);
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
 }
-.date-dot {
-  color: var(--accent-red);
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 12px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #0d3b2f;
+  background: linear-gradient(180deg, #e8faf1, #dff6ec);
+  border: 1px solid #c7eadc;
 }
-
-.header-greeting {
-  font-size: 0.95rem;
-  line-height: 1.4;
+.pill.success::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--mint-500);
 }
-
-.header-greeting p {
-  margin: 4px 0;
-}
-
-.header-greeting .highlight {
-  font-weight: 600;
-  color: var(--text-light);
-}
-
-.header-greeting strong {
-  font-weight: 600;
-}
-
-.muted {
-  color: var(--text-muted);
+.meta {
+  color: var(--muted);
+  font-size: 0.85rem;
 }

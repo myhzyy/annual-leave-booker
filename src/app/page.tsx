@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="app">
       {/* <Header /> */}
-      {/* <Header2 /> */}
+      <Header2 />
       <MainBody />
       <BottomToolbar />
     </div>
