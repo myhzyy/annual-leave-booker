@@ -106,9 +106,9 @@
   width: 100%;
   max-width: 440px;
   padding: 14px 18px;
-  border: 2px solid var(--ink);
   border-radius: 999px;
-  background: var(--ink);
+  border: none;
+  background: #1876cf;
   color: #fff;
   font-weight: 800;
   font-size: 1rem;

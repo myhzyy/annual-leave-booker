@@ -32,6 +32,8 @@
 
 ## 🧩 Finish Home Page ✅
 
-## 🧩 Merge and push new changes
-
 ## 🧩 Finish Calendar Page
+
+- change background for calendar page
+
+## 🧩 Merge and push new changes
