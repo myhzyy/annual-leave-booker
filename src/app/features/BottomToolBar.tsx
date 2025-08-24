@@ -20,10 +20,12 @@ export default function BottomNav() {
       </button>
 
       <nav className="dock">
-        <button className="nav-item" aria-current="page">
-          <HomeIcon className="nav-icon" />
-          <span className="nav-label">Home</span>
-        </button>
+        <Link href="/">
+          <button className="nav-item" aria-current="page">
+            <HomeIcon className="nav-icon" />
+            <span className="nav-label">Home</span>
+          </button>
+        </Link>
 
         <Link href="/calendar">
           <button className="nav-item">

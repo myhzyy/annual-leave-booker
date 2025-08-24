@@ -35,7 +35,7 @@ export default function AnnualLeaveBody() {
                 <span className="day">{item.day}</span>
               </div>
               <div className="details">
-                <div className="title">{item.title}</div>
+                <div className="leave-title">{item.title}</div>
                 <div className="meta">{item.meta}</div>
               </div>
             </div>

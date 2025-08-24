@@ -28,4 +28,10 @@
 - Bottom tool bar layout ✅
 - center request button ✅
 
-## 🧩 Implement Calendar Page feature
+--- BLOCK 2 ---
+
+## 🧩 Finish Home Page ✅
+
+## 🧩 Merge and push new changes
+
+## 🧩 Finish Calendar Page

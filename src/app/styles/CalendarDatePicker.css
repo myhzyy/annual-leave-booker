@@ -1,109 +1,189 @@
-/* If you’re on the app router, #__next isn’t used, but keeping it is harmless */
-html,
-body {
-  height: 100%;
-  margin: 0;
+:root {
+  --ink: #0f172a;
+  --muted: #6b7280;
+  --card: #ffffff;
+  --bg: #f6f8fb;
+  --ring: rgba(15, 23, 42, 0.08);
+
+  --accent: #1876cf;
+  --accent-soft: #eaf3ff;
+  --accent-shadow: 0 8px 22px rgba(24, 118, 207, 0.18);
+
+  --radius-lg: 18px;
+  --radius-pill: 999px;
+
+  --cell: 48px;
 }
 
-/* Root for this page */
-.calendar-page {
-  display: flex;
-  flex-direction: column;
-  background: #fff;
-  /* .calendar-page itself will be inside .page-content which gives the height */
-  flex: 1;
-  min-height: 0;
+/* page wrapper */
+.cal-wrap {
+  max-width: 520px;
+  margin: 12px auto 24px;
+  padding: 0 12px;
+  font-family: system-ui, -apple-system, "SF Pro Text", Segoe UI, Roboto,
+    sans-serif;
+  color: var(--ink);
 }
 
-/* Hero bar */
-.calendar-hero {
-  padding: 16px;
-  background: #2e3550;
-  color: #fff;
-}
-
-/* Card the calendar lives in */
-.calendar-card {
-  flex: 1; /* fill remaining height */
-  min-height: 0; /* let child flex */
-  display: flex;
-  flex-direction: column;
-  padding: 8px 8px 16px;
-  margin: 0;
-  border-radius: 0;
-  background: #fff;
-  box-shadow: none;
-}
-
-.calendar-toprow {
+/* header row */
+.cal-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 6px 6px 8px;
+  margin: 6px 0 12px;
+}
+.cal-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+.cal-sub {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.cal-today {
+  border: 1px solid var(--ring);
+  background: var(--card);
+  color: var(--ink);
+  border-radius: var(--radius-pill);
+  padding: 8px 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: box-shadow 0.15s ease, transform 0.15s ease, background 0.15s ease;
+}
+.cal-today:hover {
+  background: #f3f6fb;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+  transform: translateY(-1px);
 }
 
-.month-nav {
-  display: flex;
-  gap: 8px;
+/* card container */
+.cal-card {
+  background: var(--card);
+  border: 1px solid var(--ring);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+  padding: 10px 8px 12px;
+  overflow: hidden;
 }
-.month-nav button {
+
+/* ============ DayPicker (nice preset) ============ */
+.rdp-nice {
+  --rdp-cell-size: var(--cell);
+  --rdp-accent-color: var(--accent);
+  --rdp-outline: 0;
+  --rdp-outline-selected: 0;
+
+  width: 100%;
+  margin: 0;
+}
+
+/* Make the calendar fill the card width evenly */
+.rdp-nice .rdp-months,
+.rdp-nice .rdp-month,
+.rdp-nice .rdp-table {
+  width: 100%;
+}
+.rdp-nice .rdp-table {
+  table-layout: fixed;
+}
+
+/* Caption: center the label, pin arrows left/right (Safari friendly) */
+.rdp-nice .rdp-caption {
+  position: relative;
+  text-align: center;
+  padding: 8px 44px 10px; /* leave room for arrows */
+}
+.rdp-nice .rdp-caption_label {
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+/* nav container stays normal; we absolutely position the two buttons */
+.rdp-nice .rdp-nav_button {
+  position: absolute;
+  top: 6px;
   width: 36px;
   height: 36px;
-  border-radius: 50%;
   border: 0;
-  cursor: pointer;
-  background: #ff5c23;
+  border-radius: 50%;
+  background: var(--accent);
   color: #fff;
-  font-size: 20px;
-  line-height: 1;
   display: grid;
   place-items: center;
-  box-shadow: 0 6px 16px rgba(255, 92, 35, 0.35);
+  box-shadow: var(--accent-shadow);
+  transition: filter 0.15s ease, transform 0.15s ease;
+}
+.rdp-nice .rdp-nav_button_previous {
+  left: 6px;
+}
+.rdp-nice .rdp-nav_button_next {
+  right: 6px;
+}
+.rdp-nice .rdp-nav_button:hover {
+  filter: brightness(1.07);
+  transform: translateY(-1px);
 }
 
-/* The ONLY scroller */
-.calendar-month-shell {
-  /* border: 2px solid red;  */
-  flex: 1;
-  min-height: 0;
-  overflow: auto;
-  padding-bottom: calc(16px + env(safe-area-inset-bottom));
+/* Weekday header (7 equal columns) */
+.rdp-nice .rdp-head_row,
+.rdp-nice .rdp-row {
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr);
+}
+.rdp-nice .rdp-weekday {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--muted);
+  letter-spacing: 0.04em;
 }
 
-/* DayPicker sizing */
-.rdp-full {
-  border: 2px solid red;
+/* Cells & days */
+.rdp-nice .rdp-cell {
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  --rdp-cell-size: 50px;
-  --rdp-accent-background: #1876cf;
 }
-.rdp {
-  margin: 0 !important;
+.rdp-nice .rdp-day {
   width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+  height: var(--cell);
+  line-height: var(--cell);
+  border-radius: 12px; /* rounded square */
+  font-weight: 700;
+  color: var(--ink);
+  transition: background 0.12s ease, color 0.12s ease, transform 0.12s ease;
 }
-.rdp-months {
-  flex: 1; /* stretch the grid */
-  display: flex;
-  align-items: center; /* optional */
-  justify-content: center; /* optional */
-}
-.rdp-day {
-  border-radius: 50%;
-}
-.rdp-day_selected {
-  background: #ff5c23;
-  color: #fff;
+.rdp-nice .rdp-day:hover {
+  background: var(--accent-soft);
 }
 
-@media (min-width: 768px) {
-  .rdp-full {
-    --rdp-cell-size: 56px;
+/* Today outline */
+.rdp-nice .rdp-day_today {
+  outline: 2px solid var(--accent);
+  outline-offset: 0;
+  border-radius: 12px;
+}
+
+/* Selected range */
+.rdp-nice .rdp-day_selected,
+.rdp-nice .rdp-day_selected:hover,
+.rdp-nice .rdp-day_selected:focus-visible {
+  background: var(--accent) !important;
+  color: #fff !important;
+}
+.rdp-nice .rdp-day_range_middle {
+  background: rgba(24, 118, 207, 0.12) !important;
+  color: var(--ink);
+}
+
+/* Outside days muted */
+.rdp-nice .rdp-day_outside {
+  color: #c2c8d3 !important;
+}
+
+/* Slightly larger cells on wider phones */
+@media (min-width: 420px) {
+  :root {
+    --cell: 52px;
   }
 }
