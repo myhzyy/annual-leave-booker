@@ -1,50 +1,193 @@
-.notification-container {
-  /* border: 2px solid red; */
-  width: 95%;
-  margin: 0 auto;
+:root {
+  --bg-0: #f7f9fc;
+  --ink: #0f172a;
+  --ink-muted: #64748b;
+  --card: #ffffff;
+  --stroke: rgba(2, 6, 23, 0.08);
+  --shadow-sm: 0 2px 8px rgba(2, 6, 23, 0.06);
+  --shadow-md: 0 10px 26px rgba(2, 6, 23, 0.1);
+
+  --accent: #1876cf; /* brand primary (ring) */
+  --accent-soft: #eaf3ff; /* soft bg for ring track */
+  --success: #18c27a; /* green text demo */
 }
 
+.notification-container {
+  width: 95%;
+  margin: 0 auto;
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "SF Pro Text", Segoe UI, Roboto,
+    sans-serif;
+}
 .notification-container h1 {
   font-size: 1.5rem;
   font-weight: 800;
 }
-
-.notification-container h2 {
+.today-sub {
+  margin-top: 2px;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 400;
+  color: var(--ink-muted);
 }
 
-.notification-alerts-container {
-  /* border: 2px solid red; */
-  margin: 0 auto;
-  margin-top: 10px;
-  border: 0.5px solid black;
-  padding: 5px;
-  border-radius: 20px;
-  background-color: white;
-  width: 400px;
+/* ---------- Holiday summary card ---------- */
+.holiday-card {
+  margin-top: 12px;
+  border-radius: 14px;
+  background: var(--card);
+  border: 1px solid var(--stroke);
+  box-shadow: var(--shadow-sm);
+  padding: 10px 12px 12px;
+  width: 50%;
 }
 
-.holiday-decision-container {
-  /* border: 2px solid red; */
-}
-
-.approved-status {
-  padding: 5px;
+.holiday-card-container {
   display: flex;
+}
+
+.hc-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.hc-title {
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+.hc-info {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--stroke);
+  background: var(--card);
+  color: var(--ink-muted);
+  font-weight: 700;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.hc-grid {
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 14px;
   align-items: center;
 }
 
+/* Left: Remaining with ring */
+.hc-remaining .hc-label,
+.hc-total .hc-label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  margin-bottom: 6px;
+}
+
+/* ring wrapper */
+.ring {
+  display: inline-grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 10px;
+}
+.ring-svg {
+  display: block;
+}
+.ring-track {
+  fill: none;
+  stroke: var(--accent-soft);
+  stroke-linecap: round;
+}
+.ring-progress {
+  fill: none;
+  stroke: var(--accent);
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+.ring-text {
+  display: grid;
+  line-height: 1.1;
+}
+.ring-number {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--success);
+}
+.ring-unit {
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+}
+
+/* Right: total */
+.hc-total {
+  justify-self: end;
+  text-align: right;
+}
+.hc-total-num {
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+/* ---------- Tabs ---------- */
+.leave-container {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin: 12px 0 8px;
+}
+.leave-container button {
+  font-weight: 600;
+  border-radius: 18px;
+  background: var(--card);
+  border: 1px solid var(--stroke);
+  box-shadow: var(--shadow-sm);
+  padding: 6px 12px;
+  cursor: pointer;
+}
+.current-tab {
+  background: #111827;
+  color: #fff;
+  border-color: #111827;
+}
+
+/* ---------- Alerts ---------- */
+.notification-alerts-container {
+  margin: 0 auto;
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: var(--card);
+  border: 1px solid var(--stroke);
+  width: 100%;
+  box-shadow: var(--shadow-sm);
+}
+.holiday-decision-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.approved-status {
+  padding: 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
 .approved-status h1 {
-  font-size: 1.2rem;
+  font-size: 1.05rem;
+  font-weight: 800;
 }
-
 .approved-status-type {
-  /* border: 2px solid red; */
-  padding: 5px;
+  padding: 4px 0;
 }
-
+.approved-status-type h2 {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
 .approved-status-type h3 {
   font-size: 0.9rem;
   font-weight: 500;
+  color: var(--ink-muted);
 }
