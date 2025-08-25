@@ -1,5 +1,5 @@
 .notification-container {
-  border: 2px solid red;
+  /* border: 2px solid red; */
   width: 95%;
   margin: 0 auto;
 }
@@ -15,5 +15,36 @@
 }
 
 .notification-alerts-container {
-  border: 2px solid red;
+  /* border: 2px solid red; */
+  margin: 0 auto;
+  margin-top: 10px;
+  border: 0.5px solid black;
+  padding: 5px;
+  border-radius: 20px;
+  background-color: white;
+  width: 400px;
+}
+
+.holiday-decision-container {
+  /* border: 2px solid red; */
+}
+
+.approved-status {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.approved-status h1 {
+  font-size: 1.2rem;
+}
+
+.approved-status-type {
+  /* border: 2px solid red; */
+  padding: 5px;
+}
+
+.approved-status-type h3 {
+  font-size: 0.9rem;
+  font-weight: 500;
 }
