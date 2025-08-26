@@ -21,7 +21,6 @@
 
 .form-info {
   padding: 5px;
-  /* border: 2px solid red; */
 }
 
 .form-info dt {
@@ -35,4 +34,12 @@
   object-fit: cover;
   border: 2px solid #ddd;
   background: #f3f4f6;
+}
+
+@media (min-width: 1023.98px) {
+  .user-infomation-container {
+    width: 80%;
+    /* border: 2px solid red; */
+    text-align: center;
+  }
 }
