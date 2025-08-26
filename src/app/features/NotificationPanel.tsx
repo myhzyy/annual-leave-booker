@@ -15,7 +15,7 @@ export default function NotificationPanel() {
   const pctRemaining = Math.max(Math.min(remaining / total, 1), 0);
   const dashRemaining = c * pctRemaining;
 
-  // progress for reset
+  // progress for resethttp://10.85.63.108:3000
   const maxReset = 365;
   const pctReset = Math.max(Math.min(untilReset / maxReset, 1), 0);
   const dashReset = c * pctReset;
@@ -91,7 +91,7 @@ export default function NotificationPanel() {
         {/* Days until reset card */}
         <div className="holiday-card">
           <div className="hc-head">
-            <span className="hc-title">Holiday</span>
+            <span className="hc-title">Remaining days</span>
             <button className="hc-info" aria-label="Info about holiday reset">
               i
             </button>
@@ -151,7 +151,7 @@ export default function NotificationPanel() {
         <div className="holiday-decision-container">
           <div className="approved-status">
             <p>✅</p>
-            <h1>Approved!</h1>
+            <h1>Approved</h1>
           </div>
           <div className="approved-status-type">
             <h2>17–18 Oct 2025</h2>
@@ -164,7 +164,7 @@ export default function NotificationPanel() {
         <div className="holiday-decision-container">
           <div className="approved-status">
             <p>❌</p>
-            <h1>Declined!</h1>
+            <h1>Declined</h1>
           </div>
           <div className="approved-status-type">
             <h2>17–18 Oct 2025</h2>
