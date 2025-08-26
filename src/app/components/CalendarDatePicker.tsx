@@ -144,7 +144,7 @@ export default function CalendarPage() {
                 alt="Host avatar"
               />
               <div>
-                <div className="name">Jacob Murphu</div>
+                <div className="name">Jacob Murphy</div>
                 <div className="role" style={{ color: "var(--muted)" }}>
                   Employee
                 </div>
