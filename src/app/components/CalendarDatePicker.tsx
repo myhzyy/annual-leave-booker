@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
 import "../styles/CalendarDatePicker.css";
 
 interface DateRange {
@@ -11,6 +11,7 @@ interface DateRange {
 export default function CalendarPage() {
   const [month, setMonth] = useState(new Date());
   const [range, setRange] = useState<DateRange | undefined>();
+  const [pickedTime, setPickedTime] = useState<string | null>(null);
 
   const months = [
     "January",
@@ -26,202 +27,209 @@ export default function CalendarPage() {
     "November",
     "December",
   ];
-
   const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const timeSlots = ["23rd August - 25rd August"];
 
   const { daysInMonth, firstDayOfMonth, today } = useMemo(() => {
-    const year = month.getFullYear();
-    const monthIndex = month.getMonth();
-    const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
-    const firstDayOfMonth = new Date(year, monthIndex, 1).getDay();
-    const today = new Date();
-
-    return { daysInMonth, firstDayOfMonth, today };
+    const y = month.getFullYear();
+    const m = month.getMonth();
+    return {
+      daysInMonth: new Date(y, m + 1, 0).getDate(),
+      firstDayOfMonth: new Date(y, m, 1).getDay(),
+      today: new Date(),
+    };
   }, [month]);
 
-  const navigateMonth = (direction: "prev" | "next") => {
+  const navigateMonth = (dir: "prev" | "next") => {
     setMonth((prev) => {
-      const newMonth = new Date(prev);
-      if (direction === "prev") {
-        newMonth.setMonth(prev.getMonth() - 1);
-      } else {
-        newMonth.setMonth(prev.getMonth() + 1);
-      }
-      return newMonth;
+      const d = new Date(prev);
+      d.setMonth(prev.getMonth() + (dir === "next" ? 1 : -1));
+      return d;
     });
   };
 
   const handleDateClick = (day: number) => {
-    const clickedDate = new Date(month.getFullYear(), month.getMonth(), day);
-
+    const clicked = new Date(month.getFullYear(), month.getMonth(), day);
     if (!range?.from || (range.from && range.to)) {
-      setRange({ from: clickedDate });
+      setRange({ from: clicked });
+      setPickedTime(null);
     } else if (range.from && !range.to) {
       const from = range.from;
-      const to = clickedDate;
-
-      if (from <= to) {
-        setRange({ from, to });
-      } else {
-        setRange({ from: to, to: from });
-      }
+      const to = clicked;
+      setRange(from <= to ? { from, to } : { from: to, to: from });
+      setPickedTime(null);
     }
   };
 
-  const isDateSelected = (day: number): boolean => {
-    if (!range?.from) return false;
+  const isToday = (day: number) =>
+    new Date(month.getFullYear(), month.getMonth(), day).toDateString() ===
+    today.toDateString();
 
-    const date = new Date(month.getFullYear(), month.getMonth(), day);
+  const sameDay = (a?: Date, b?: Date) =>
+    !!a && !!b && a.toDateString() === b.toDateString();
 
-    if (range.from && range.to) {
-      return date >= range.from && date <= range.to;
-    }
-
-    return date.toDateString() === range.from.toDateString();
-  };
-
-  const isDateInRange = (day: number): boolean => {
+  const inRange = (day: number) => {
     if (!range?.from || !range?.to) return false;
-
-    const date = new Date(month.getFullYear(), month.getMonth(), day);
-    return date > range.from && date < range.to;
+    const d = new Date(month.getFullYear(), month.getMonth(), day);
+    return d > range.from && d < range.to;
   };
 
-  const isDateRangeStart = (day: number): boolean => {
-    if (!range?.from) return false;
-
-    const date = new Date(month.getFullYear(), month.getMonth(), day);
-    return range.from.toDateString() === date.toDateString();
-  };
-
-  const isDateRangeEnd = (day: number): boolean => {
-    if (!range?.to) return false;
-
-    const date = new Date(month.getFullYear(), month.getMonth(), day);
-    return range.to.toDateString() === date.toDateString();
-  };
-
-  const isToday = (day: number): boolean => {
-    const date = new Date(month.getFullYear(), month.getMonth(), day);
-    return date.toDateString() === today.toDateString();
-  };
-
-  const renderCalendarDays = () => {
-    const days = [];
-
-    for (let i = 0; i < firstDayOfMonth; i++) {
-      days.push(<div key={`empty-${i}`} className="cal-empty" />);
+  const selected = (day: number) => {
+    const d = new Date(month.getFullYear(), month.getMonth(), day);
+    if (range?.from && range?.to) {
+      return d >= range.from && d <= range.to;
     }
+    return sameDay(d, range?.from);
+  };
 
-    for (let day = 1; day <= daysInMonth; day++) {
-      const dayClasses = ["cal-day"];
+  const start = (day: number) =>
+    sameDay(new Date(month.getFullYear(), month.getMonth(), day), range?.from);
+  const end = (day: number) =>
+    sameDay(new Date(month.getFullYear(), month.getMonth(), day), range?.to);
 
-      if (isToday(day) && !isDateSelected(day)) {
-        dayClasses.push("cal-day--today");
-      }
+  const renderDays = () => {
+    const nodes = [];
+    for (let i = 0; i < firstDayOfMonth; i++) {
+      nodes.push(<div key={`e-${i}`} className="cal-empty" />);
+    }
+    for (let d = 1; d <= daysInMonth; d++) {
+      const cls = ["cal-day"];
+      if (isToday(d) && !selected(d)) cls.push("cal-day--today");
+      if (start(d)) cls.push("cal-day--range-start");
+      if (end(d)) cls.push("cal-day--range-end");
+      if (inRange(d)) cls.push("cal-day--in-range");
+      if (selected(d)) cls.push("cal-day--selected");
 
-      if (isDateRangeStart(day)) {
-        dayClasses.push("cal-day--range-start");
-      }
-
-      if (isDateRangeEnd(day)) {
-        dayClasses.push("cal-day--range-end");
-      }
-
-      if (isDateInRange(day)) {
-        dayClasses.push("cal-day--in-range");
-      }
-
-      if (isDateSelected(day)) {
-        dayClasses.push("cal-day--selected");
-      }
-
-      days.push(
+      nodes.push(
         <button
-          key={day}
-          className={dayClasses.join(" ")}
-          onClick={() => handleDateClick(day)}
+          key={d}
+          className={cls.join(" ")}
+          onClick={() => handleDateClick(d)}
         >
-          {day}
+          {d}
         </button>
       );
     }
-
-    return days;
+    return nodes;
   };
 
+  const pretty = (d: Date) =>
+    d.toLocaleDateString("en-US", {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+    });
+
+  const rightPanelDate =
+    range?.from && range?.to
+      ? `${pretty(range.from)} – ${pretty(range.to)}`
+      : range?.from
+      ? pretty(range.from)
+      : "Current holiday bookings";
+
   return (
-    <main className="cal-wrap cal-wrap--full">
-      <div className="cal-container">
-        <header className="cal-head">
-          <div className="cal-head-content">
-            <svg
-              className="cal-icon"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-              <line x1="16" y1="2" x2="16" y2="6" />
-              <line x1="8" y1="2" x2="8" y2="6" />
-              <line x1="3" y1="10" x2="21" y2="10" />
-            </svg>
-            <div>
-              <h2 className="cal-title">Calendar</h2>
-              <p className="cal-sub">Pick a date range</p>
+    <main className="cal-wrap">
+      <div className="cal-desktop">
+        <div className="cal-grid-3">
+          {/* LEFT */}
+          <aside className="cal-side">
+            <div className="brand-row">
+              <div className="brand-badge" />
+              <div className="brand-name">ACME Inc.</div>
             </div>
-          </div>
-          <button className="cal-today" onClick={() => setMonth(new Date())}>
-            Today
-          </button>
-        </header>
 
-        <div className="cal-nav">
-          <button className="cal-nav-btn" onClick={() => navigateMonth("prev")}>
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <polyline points="15,18 9,12 15,6" />
-            </svg>
-          </button>
-          <h3 className="cal-month-year">
-            {months[month.getMonth()]} {month.getFullYear()}
-          </h3>
-          <button className="cal-nav-btn" onClick={() => navigateMonth("next")}>
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <polyline points="9,18 15,12 9,6" />
-            </svg>
-          </button>
-        </div>
-
-        <section className="cal-card">
-          <div className="cal-grid">
-            {weekDays.map((day) => (
-              <div key={day} className="cal-weekday">
-                {day}
+            <div className="host">
+              <img
+                src="https://images.icon-icons.com/1378/PNG/512/avatardefault_92824.png"
+                alt="Host avatar"
+              />
+              <div>
+                <div className="name">Jacob Murphu</div>
+                <div className="role" style={{ color: "var(--muted)" }}>
+                  Employee
+                </div>
               </div>
-            ))}
-          </div>
-          <div className="cal-grid">{renderCalendarDays()}</div>
-        </section>
+            </div>
 
-        {range?.from && (
-          <div className="cal-selected">
-            <p className="cal-selected-label">Selected:</p>
-            <p className="cal-selected-date">
-              {range.from.toLocaleDateString("en-US", {
-                month: "short",
-                day: "numeric",
-                year: "numeric",
-              })}
-              {range.to
-                ? ` - ${range.to.toLocaleDateString("en-US", {
-                    month: "short",
-                    day: "numeric",
-                    year: "numeric",
-                  })}`
-                : " (select end date)"}
-            </p>
-          </div>
-        )}
+            <div className="meta-list">
+              <div className="meta-item">⏱️ 30 min</div>
+              <div className="meta-item">🟣 Zoom</div>
+            </div>
+          </aside>
+
+          {/* CENTER */}
+          <section className="cal-center">
+            <header className="cal-head">
+              <div>
+                <h2 className="cal-title">
+                  Holiday Booking <br />
+                  Select a Date & Time
+                </h2>
+                <p className="cal-sub">July 2024</p>
+              </div>
+              <button
+                className="cal-today"
+                onClick={() => setMonth(new Date())}
+              >
+                Today
+              </button>
+            </header>
+
+            <div className="cal-nav">
+              <button
+                className="cal-nav-btn"
+                onClick={() => navigateMonth("prev")}
+              >
+                ‹
+              </button>
+              <h3 className="cal-month-year">
+                {months[month.getMonth()]} {month.getFullYear()}
+              </h3>
+              <button
+                className="cal-nav-btn"
+                onClick={() => navigateMonth("next")}
+              >
+                ›
+              </button>
+            </div>
+
+            <div className="cal-card">
+              <div className="cal-grid">
+                {["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"].map((w) => (
+                  <div key={w} className="cal-weekday">
+                    {w}
+                  </div>
+                ))}
+              </div>
+              <div className="cal-grid">{renderDays()}</div>
+            </div>
+          </section>
+
+          {/* RIGHT */}
+          <aside className="cal-right">
+            <h4 className="cal-title" style={{ margin: 0 }}>
+              {rightPanelDate}
+            </h4>
+            <p className="right-date">Available times</p>
+
+            {timeSlots.map((t) => {
+              const active = pickedTime === t;
+              return (
+                <div key={t} className={`slot ${active ? "active" : ""}`}>
+                  <span className="time">{t}</span>
+                  <button className="confirm">View</button>
+                </div>
+              );
+            })}
+
+            <div className="timezone">
+              🌐 Time zone
+              <span style={{ fontWeight: 700, color: "var(--ink)" }}>
+                Eastern time – UK
+              </span>
+            </div>
+          </aside>
+        </div>
       </div>
     </main>
   );

@@ -42,6 +42,8 @@
 
 ## 🧩 Settings Page ✅
 
-## 🧩 Finalise All Mobile Design
+## 🧩 Finalise All Mobile Design ✅
 
-## 🧩 Make all pages work on all screens
+## 🧩 Make all Home work on all screens ✅
+
+## 🧩 Make all Calendar work on all screens
