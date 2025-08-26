@@ -39,3 +39,9 @@
 ## 🧩 Merge and push new changes ✅
 
 ## 🧩 Notifcation Page ✅
+
+## 🧩 Settings Page ✅
+
+## 🧩 Finalise All Mobile Design
+
+## 🧩 Make all pages work on all screens

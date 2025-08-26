@@ -35,16 +35,19 @@ export default function BottomNav() {
         </Link>
 
         <span className="dock-spacer" aria-hidden />
+        <Link href="/notifcations">
+          <button className="nav-item">
+            <NotificationsIcon className="nav-icon" />
+            <span className="nav-label">Notifications</span>
+          </button>
+        </Link>
 
-        <button className="nav-item">
-          <NotificationsIcon className="nav-icon" />
-          <span className="nav-label">Notifications</span>
-        </button>
-
-        <button className="nav-item">
-          <SettingsIcon className="nav-icon" />
-          <span className="nav-label">Settings</span>
-        </button>
+        <Link href="/profile">
+          <button className="nav-item">
+            <SettingsIcon className="nav-icon" />
+            <span className="nav-label">Settings</span>
+          </button>
+        </Link>
       </nav>
     </footer>
   );

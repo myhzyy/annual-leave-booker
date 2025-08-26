@@ -23,7 +23,7 @@ export default function NotificationPanel() {
   return (
     <div className="notification-container">
       <h1>Notifications</h1>
-      <h2 className="today-sub">Today</h2>
+      <h2 className="today-sub">Requests</h2>
 
       <div className="leave-container">
         <button>All leave</button>
