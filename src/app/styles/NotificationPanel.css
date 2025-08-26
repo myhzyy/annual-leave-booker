@@ -33,6 +33,7 @@
 /* ---------- Holiday summary card ---------- */
 .holiday-card {
   margin-top: 12px;
+  margin-bottom: 10px;
   border-radius: 14px;
   background: var(--card);
   border: 1px solid var(--stroke);
@@ -190,4 +191,17 @@
   font-size: 0.9rem;
   font-weight: 500;
   color: var(--ink-muted);
+}
+
+@media (min-width: 1023px) {
+  .holiday-card-container {
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .holiday-card {
+    /* border: 2px solid red; */
+    max-width: 30%;
+  }
 }

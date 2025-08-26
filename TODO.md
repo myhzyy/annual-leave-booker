@@ -46,4 +46,8 @@
 
 ## 🧩 Make all Home work on all screens ✅
 
-## 🧩 Make all Calendar work on all screens
+## 🧩 Make all Calendar work on all screens ✅
+
+## 🧩 Make all Notifacation work on all screens ✅
+
+## 🧩 Drop down in leftside of header
