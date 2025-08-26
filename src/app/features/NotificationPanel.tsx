@@ -4,14 +4,21 @@ import "../styles/NotificationPanel.css";
 export default function NotificationPanel() {
   const total = 30;
   const remaining = 9;
-  const used = Math.max(total - remaining, 0);
-  const pct = Math.max(Math.min(remaining / total, 1), 0); // 0..1
+  const untilReset = 120;
 
   const size = 46;
   const stroke = 6;
   const r = (size - stroke) / 2;
   const c = 2 * Math.PI * r;
-  const dash = c * pct;
+
+  // progress for remaining days
+  const pctRemaining = Math.max(Math.min(remaining / total, 1), 0);
+  const dashRemaining = c * pctRemaining;
+
+  // progress for reset
+  const maxReset = 365;
+  const pctReset = Math.max(Math.min(untilReset / maxReset, 1), 0);
+  const dashReset = c * pctReset;
 
   return (
     <div className="notification-container">
@@ -24,7 +31,7 @@ export default function NotificationPanel() {
       </div>
 
       <div className="holiday-card-container">
-        {/* Holiday summary card */}
+        {/* Holiday balance card */}
         <div className="holiday-card">
           <div className="hc-head">
             <span className="hc-title">Holiday</span>
@@ -46,7 +53,6 @@ export default function NotificationPanel() {
                   className="ring-svg"
                   aria-hidden
                 >
-                  {/* background track */}
                   <circle
                     cx={size / 2}
                     cy={size / 2}
@@ -54,7 +60,6 @@ export default function NotificationPanel() {
                     strokeWidth={stroke}
                     className="ring-track"
                   />
-                  {/* progress arc */}
                   <circle
                     cx={size / 2}
                     cy={size / 2}
@@ -62,7 +67,7 @@ export default function NotificationPanel() {
                     strokeWidth={stroke}
                     className="ring-progress"
                     style={{
-                      strokeDasharray: `${dash} ${c}`,
+                      strokeDasharray: `${dashRemaining} ${c}`,
                       strokeDashoffset: 0,
                     }}
                   />
@@ -83,18 +88,19 @@ export default function NotificationPanel() {
           </div>
         </div>
 
+        {/* Days until reset card */}
         <div className="holiday-card">
           <div className="hc-head">
             <span className="hc-title">Holiday</span>
-            <button className="hc-info" aria-label="Info about holiday balance">
+            <button className="hc-info" aria-label="Info about holiday reset">
               i
             </button>
           </div>
 
           <div className="hc-grid">
-            {/* Remaining (with ring) */}
+            {/* Until reset (with ring) */}
             <div className="hc-remaining">
-              <span className="hc-label">Remaining</span>
+              <span className="hc-label">Until reset</span>
 
               <div className="ring">
                 <svg
@@ -104,7 +110,6 @@ export default function NotificationPanel() {
                   className="ring-svg"
                   aria-hidden
                 >
-                  {/* background track */}
                   <circle
                     cx={size / 2}
                     cy={size / 2}
@@ -112,7 +117,6 @@ export default function NotificationPanel() {
                     strokeWidth={stroke}
                     className="ring-track"
                   />
-                  {/* progress arc */}
                   <circle
                     cx={size / 2}
                     cy={size / 2}
@@ -120,29 +124,27 @@ export default function NotificationPanel() {
                     strokeWidth={stroke}
                     className="ring-progress"
                     style={{
-                      strokeDasharray: `${dash} ${c}`,
+                      strokeDasharray: `${dashReset} ${c}`,
                       strokeDashoffset: 0,
                     }}
                   />
                 </svg>
 
                 <div className="ring-text">
-                  <span className="ring-number">{remaining}</span>
+                  <span className="ring-number">{untilReset}</span>
                   <span className="ring-unit">days</span>
                 </div>
               </div>
             </div>
 
-            {/* Total */}
+            {/* Total reset cycle (e.g. yearly) */}
             <div className="hc-total">
-              <span className="hc-label">Total</span>
-              <span className="hc-total-num">{total}</span>
+              <span className="hc-label">Cycle</span>
+              <span className="hc-total-num">{maxReset}</span>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Tabs */}
 
       {/* Alerts */}
       <div className="notification-alerts-container">
@@ -151,7 +153,6 @@ export default function NotificationPanel() {
             <p>✅</p>
             <h1>Approved!</h1>
           </div>
-
           <div className="approved-status-type">
             <h2>17–18 Oct 2025</h2>
             <h3>Holiday request</h3>
@@ -165,7 +166,6 @@ export default function NotificationPanel() {
             <p>❌</p>
             <h1>Declined!</h1>
           </div>
-
           <div className="approved-status-type">
             <h2>17–18 Oct 2025</h2>
             <h3>Holiday request</h3>
