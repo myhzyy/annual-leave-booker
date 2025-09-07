@@ -2,31 +2,40 @@ import Link from "next/link";
 import { prisma } from "../../lib/db";
 
 export default async function BackendTest() {
-  const posts = await prisma.user.findMany();
+  const posts = await prisma.post.findMany({
+    where: {
+      title: {
+        endsWith: "Post",
+      },
+    },
 
-  // console.log(posts);
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  console.log(posts);
 
   if (posts.length === 0) {
     return (
       <div>
-        <h1>post</h1>
+        <h1>{posts.length}</h1>
         <p>No posts yet.</p>
         <Link href="/api/seed">Insert a sample post</Link>
       </div>
     );
   }
 
-  const urlPage = posts[0];
-
   return (
     <div>
-      <h1>post</h1>
+      <h1>post ! {posts.length}</h1>
+      <Link href="/formTest">Form test</Link>
 
       {posts.map((post) => {
         return (
           <div key={post.id}>
-            <h2>{post.id}</h2>
-            <Link href={`/backendTest/${post.id}`}>Link click!</Link>
+            <h2>{post.content}</h2>
+            <Link href={`/backendTest/${post.slug}`}>Link click!</Link>
           </div>
         );
       })}
@@ -36,11 +45,8 @@ export default async function BackendTest() {
 
 /* 
 
-- This queries Prisma.post
-- post is what the database is called
-- findMany means get all rows from this table
-- there are other ones, for example findUnique, findFirst
-- these are just different types of queries
-
+- Here we are mapping over the object we made in Primsa studio
+- for each of the posts, we are rending them id off that object
+- we then make the link click link to /backendTest and then post ID
 
 */
