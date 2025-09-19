@@ -1,30 +1,17 @@
-// app/backendTest/[slug]/page.tsx
+import Link from "next/link";
 import { prisma } from "../../../lib/db";
 
-type PageProps = {
-  params: { id: string }; // comes from folder name [slug]
-};
-
-export default async function BackendTestPage({ params }: PageProps) {
-  const slug = params.id;
-
-  const post = await prisma.post.findMany({
-    where: { slug },
+export default async function BackendTestPage({ params }) {
+  const posts = await prisma.post.findUnique({
+    where: {
+      id: params.id,
+    },
   });
-
-  console.log(post[0]);
-
-  if (!post) {
-    return <h1>No post found for id</h1>;
-  }
-
-  // console.log(post);
 
   return (
     <div>
-      <h1>{post[0].title}</h1>
-      <p>slug: {post[0].slug}</p>
-      <p>{post[0].content}</p>
+      <p>{posts?.title}</p>
+      <p>{posts?.slug}</p>
     </div>
   );
 }
