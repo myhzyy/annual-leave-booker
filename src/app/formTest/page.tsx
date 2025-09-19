@@ -1,53 +1,22 @@
-"use client";
+import { prisma } from "../../lib/db";
+import NewPostForm from "./newPostForm";
 
-import { useState } from "react";
-import { createPost } from "../../actions/actions";
-
-function slugify(s: string) {
-  return s
-    .toLowerCase()
-    .trim()
-    .replace(/['"]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)+/g, "")
-    .slice(0, 60);
-}
-
-export default function FormTest() {
-  const [title, setTitle] = useState("");
-  const [slug, setSlug] = useState("");
+export default async function FormTestPage() {
+  const posts = await prisma.post.findMany({ orderBy: { createdAt: "desc" } });
 
   return (
-    <div>
-      <form action={createPost} className="space-y-3">
-        <input
-          type="text"
-          name="title"
-          placeholder="Title"
-          value={title}
-          onChange={(e) => {
-            const v = e.target.value;
-            setTitle(v);
-            setSlug(slugify(v));
-          }}
-          required
-          className="border px-3 py-2 rounded"
-        />
-
-        {/* hidden auto-generated slug that actions.ts expects */}
-        <input type="hidden" name="slug" value={slug} />
-
-        <textarea
-          name="content"
-          placeholder="Write something…"
-          required
-          className="border px-3 py-2 rounded w-full h-32"
-        />
-
-        <button type="submit" className="px-4 py-2 rounded bg-black text-white">
-          Submit
-        </button>
-      </form>
-    </div>
+    <main className="p-6 space-y-6">
+      <NewPostForm />
+      <section>
+        <h2 className="font-semibold mb-2">Posts</h2>
+        <ul className="space-y-2">
+          {posts.map((p) => (
+            <li key={p.id} className="border rounded p-2">
+              <div className="font-medium">{p.title}</div>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </main>
   );
 }
