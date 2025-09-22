@@ -11,7 +11,7 @@ export default async function BackendTest() {
           <div key={item.id}>
             <p>{item.title}</p>
 
-            <Link href={`/backendTest/${item.id}`}>hi!</Link>
+            <Link href={`/backendTest/${item.slug}`}>hi!</Link>
           </div>
         );
       })}
