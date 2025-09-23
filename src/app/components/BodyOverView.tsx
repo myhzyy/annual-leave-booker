@@ -2,12 +2,19 @@ import "../styles/BodyOverView.css";
 import { MdOutlineAccessAlarm } from "react-icons/md";
 
 export default function BodyOverView() {
+  const options: Intl.DateTimeFormatOptions = {
+    weekday: "long",
+    day: "numeric",
+    month: "short",
+  };
+  const today = new Date().toLocaleDateString("en-GB", options);
+
   return (
     <div className="main-wrapper">
       <div className="overview-and-entitlement">
         <div className="overview-box">
           <h1>Your Overview</h1>
-          <h2>Friday, august, 2025</h2>
+          <h2>{today}</h2>
         </div>
         <div className="entitlement-boxes">
           <div className="entitlement-box">
