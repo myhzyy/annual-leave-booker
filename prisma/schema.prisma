@@ -1,9 +1,5 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
-  // remove the output line
 }
 
 datasource db {
@@ -11,20 +7,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
-  id        String   @id @default(cuid())
-  title     String
-  slug      String   @unique
-  content   String
-  published Boolean  @default(false)
-  updatedAt DateTime @updatedAt
+model UserLeave {
+  id        Int      @id @default(autoincrement())
+  month     String
+  day       String
+  title     String   @default("Annual leave")
+  meta      String   @default("All Day")
   createdAt DateTime @default(now())
-
-  @@index(slug)
-}
-
-model User {
-  id      Int     @id @default(autoincrement())
-  title   String
-  content String?
+  updatedAt DateTime @updatedAt
 }

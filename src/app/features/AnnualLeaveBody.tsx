@@ -1,4 +1,5 @@
 import "../styles/AnnualLeaveBody.css";
+import { PrismaClient } from "@prisma/client";
 
 type LeaveItem = {
   id: number;
@@ -7,6 +8,8 @@ type LeaveItem = {
   title: string;
   meta: string;
 };
+
+const prisma = new PrismaClient();
 
 const mock_data: LeaveItem[] = [
   { id: 1, month: "MAR", day: "14", title: "Annual leave", meta: "All day" },
@@ -18,7 +21,11 @@ const mock_data: LeaveItem[] = [
   { id: 7, month: "SEP", day: "05", title: "Training", meta: "13:00" },
 ];
 
-export default function AnnualLeaveBody() {
+export default async function AnnualLeaveBody() {
+  const leave = await prisma.userLeave.findMany();
+
+  console.log(leave);
+
   return (
     <section className="annual-leave-body">
       <header className="upcoming-header">
@@ -28,7 +35,7 @@ export default function AnnualLeaveBody() {
 
       <div className="leave-viewport" aria-label="Upcoming leave list">
         <div className="leave-grid">
-          {mock_data.map((item) => (
+          {leave.map((item) => (
             <div key={item.id} className="leave-card">
               <div className="date-col">
                 <span className="month">{item.month}</span>
