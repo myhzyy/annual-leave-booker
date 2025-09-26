@@ -15,9 +15,11 @@ export default function BottomNav() {
       role="navigation"
       aria-label="Bottom navigation"
     >
-      <button className="fab" aria-label="Request">
-        <AddIcon fontSize="inherit" />
-      </button>
+      <Link href="/request-leave">
+        <button className="fab" aria-label="Request">
+          <AddIcon fontSize="inherit" />
+        </button>
+      </Link>
 
       <nav className="dock">
         <Link href="/">
@@ -35,6 +37,7 @@ export default function BottomNav() {
         </Link>
 
         <span className="dock-spacer" aria-hidden />
+
         <Link href="/notifcations">
           <button className="nav-item">
             <NotificationsIcon className="nav-icon" />

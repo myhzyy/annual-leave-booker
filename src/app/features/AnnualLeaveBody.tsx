@@ -24,8 +24,6 @@ const mock_data: LeaveItem[] = [
 export default async function AnnualLeaveBody() {
   const leave = await prisma.userLeave.findMany();
 
-  console.log(leave);
-
   return (
     <section className="annual-leave-body">
       <header className="upcoming-header">
